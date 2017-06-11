@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - "6"
+env:
+  - CXX=g++
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++ 
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run build.prod
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: adb9d91a96e1757f781002235fcfe77fc41e2f5b
+  local_dir: dist
+  on:
+    branch: master
